@@ -1,10 +1,8 @@
-﻿using System.Data.Common;
-
-string Soundex(string str)
+﻿string Soundex(string str)
 {
     Char[] list_occurrences=new Char[]{'a', 'e', 'i', 'o', 'u', 'y', 'h', 'w'};
     str=str.ToLower();
-    Stack<char> adjacent=new Stack<char>();  
+   
     for(int i = 1; i < str.Length; i++)
     {
         if(str[i]=='b' || str[i]=='f' || str[i]=='p' || str[i] == 'v')
