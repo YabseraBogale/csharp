@@ -4,9 +4,13 @@
     
     Stack<char> letters=new Stack<char>();
     letters.Push(str[0]);
-    for(int i = 1; i < str.Length && letters.Capacity<4; i++)
+    for(int i = 1; i < str.Length && letters.Count<4; i++)
     {
-        if(str[i]=='b' || str[i]=='f' || str[i]=='p' || str[i] == 'v')
+        if (letters.Peek()==str[i])
+        {
+            continue;
+        }
+        else if(str[i]=='b' || str[i]=='f' || str[i]=='p' || str[i] == 'v')
         {
             letters.Push('1');
         } else if (str[i]=='c' || str[i]=='g' || str[i]=='j' || str[i] == 'k' || str[i]=='q' || str[i] == 's' || str[i]=='x' || str[i] == 'z')
@@ -29,9 +33,15 @@
             letters.Push('0');
         }
     }
-    
-    return letters.ToArray().Reverse().ToArray().ToString();
+    string result=new string(letters.ToArray().Reverse().ToArray());
+    var counter=0;
+    while (result.Length < 4)
+    {
+        result.Append('0');
+        counter++;
+    }
+    return result;
     
 }
 
-Console.WriteLine(Soundex("World"));
+Console.WriteLine(Soundex("Wor"));
