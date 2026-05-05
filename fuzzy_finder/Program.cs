@@ -1,7 +1,6 @@
 ﻿string Soundex(string str)
 {
-    Char[] list_occurrences=new Char[]{'a', 'e', 'i', 'o', 'u', 'y', 'h', 'w'};
-    str=str.ToLower();
+     str=str.ToLower();
    
     for(int i = 1; i < str.Length; i++)
     {
@@ -23,34 +22,13 @@
         }else if (str[i]=='r')
         {
             str=str.Replace(str[i],'6');
-        }
-    }
-
-    foreach(var i in list_occurrences)
-    {
-        if (str.Contains(i) && str[0]!=i)
+        }else if (str[i]=='a' || str[i]=='e' || str[i]=='i' || str[i] == 'o' || str[i]=='u' || str[i] == 'h' || str[i]=='w' || str[i] == 'y')
         {
-            str=str.Replace(i,' ');
-            
+            str=str.Replace(str[i],'0');
         }
-    }
-    
-    str=str.Replace(" ","");
-    if (str.Length > 4)
-    {
-        return str.Substring(0,5);
-    } else if (str.Length < 4)
-    {
-        int counter=str.Length;
-        while (counter<4)
-        {
-            str+="0";
-            counter++;
-
-        }
-        return str;
     }
     return str;
+    
 }
 
 Console.WriteLine(Soundex("World"));
