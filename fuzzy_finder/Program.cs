@@ -37,7 +37,7 @@
     var counter=0;
     while (result.Length < 4)
     {
-        result.Append('0');
+        result+='0';
         counter++;
     }
     return result;
