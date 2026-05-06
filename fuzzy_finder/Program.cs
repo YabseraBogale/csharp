@@ -44,4 +44,9 @@
     
 }
 
-Console.WriteLine(Soundex("Wor"));
+var lines=File.ReadAllLines("last-names.txt");
+
+foreach (var line in lines)
+{
+    Console.WriteLine(Soundex(line));
+}
