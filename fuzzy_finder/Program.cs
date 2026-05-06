@@ -1,4 +1,6 @@
-﻿string? Soundex(string str)
+﻿using System.ComponentModel.Design.Serialization;
+
+string Soundex(string str)
 {
     str=str.ToLower();
     
@@ -45,8 +47,22 @@
 }
 
 var lines=File.ReadAllLines("last-names.txt");
+Dictionary<string,string[]> pairs=new Dictionary<string, string[]>();
+
 
 foreach (var line in lines)
 {
-    Console.WriteLine(Soundex(line));
+    pairs[Soundex(line)].Append(line);       
+}
+
+foreach(var key in pairs.Keys)
+{
+    if (pairs[key].Length > 1)
+    {
+        foreach(var value in pairs[key])
+        {
+            Console.Write(value);
+        }
+        Console.WriteLine();
+    }
 }
