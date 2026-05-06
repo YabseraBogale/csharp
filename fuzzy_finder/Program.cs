@@ -4,6 +4,7 @@ string Soundex(string str)
 {
     str=str.ToLower();
     
+    
     Stack<char> letters=new Stack<char>();
     letters.Push(str[0]);
     for(int i = 1; i < str.Length && letters.Count<4; i++)
@@ -47,22 +48,31 @@ string Soundex(string str)
 }
 
 var lines=File.ReadAllLines("last-names.txt");
-Dictionary<string,string[]> pairs=new Dictionary<string, string[]>();
+Dictionary<string,List<string>> pairs=new Dictionary<string, List<string>>();
 
 
 foreach (var line in lines)
 {
     if (!pairs.ContainsKey(Soundex(line)))
     {
-        pairs[Soundex(line)]=new string[]{};    
+        pairs[Soundex(line)]=new List<string>();    
+    } else
+    {
+        pairs[Soundex(line)].Add(line);    
     }
-    pairs[Soundex(line)].Append(line);       
+           
 }
 
 foreach(var key in pairs.Keys)
 {
-    if (pairs[key].Length > 1)
+    foreach(var value in pairs[key])
     {
-        Console.WriteLine(pairs[key]);
+        if (value == "\n")
+        {
+            continue;
+        }
+        Console.Write(value," ");
     }
+    Console.WriteLine();
+
 }
