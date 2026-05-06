@@ -52,6 +52,10 @@ Dictionary<string,string[]> pairs=new Dictionary<string, string[]>();
 
 foreach (var line in lines)
 {
+    if (!pairs.ContainsKey(Soundex(line)))
+    {
+        pairs[Soundex(line)]=new string[]{};    
+    }
     pairs[Soundex(line)].Append(line);       
 }
 
@@ -59,10 +63,6 @@ foreach(var key in pairs.Keys)
 {
     if (pairs[key].Length > 1)
     {
-        foreach(var value in pairs[key])
-        {
-            Console.Write(value);
-        }
-        Console.WriteLine();
+        Console.WriteLine(pairs[key]);
     }
 }
